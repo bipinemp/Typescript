@@ -7,6 +7,7 @@ myName = "Bipin";
 meaningOfLife = 0;
 isLoading = true;
 album = 1010;
+let hello = "hello";
 
 const sum = (a: number, b: number) => {
   return a + b;
