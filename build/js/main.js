@@ -1,51 +1,71 @@
 "use strict";
-let stringArr = ["one", "two", "three"];
-let guitars = ["strat", "lest paul", 5150];
-let mixedData = ["EVH", 1984, true];
-stringArr[0] = "john";
-guitars[0] = 142;
-let test = [];
-let bands = [];
-bands.push("bipin");
-// Tuple
-let myTuple = ["Bipin", 22, true];
-let mixed = ["john", 1, false];
-myTuple[1] = 2;
-// Objects
-let myObj;
-myObj = [];
-// console.log(typeof myObj);
-myObj = bands;
-myObj = {};
-const exampleObj = {
-    prop1: "Bipin",
-    prop2: true,
+// Literal types
+let myName;
+let userName;
+userName = "Dave";
+// functions
+const add = (a, b) => {
+    return a + b;
 };
-exampleObj.prop1 = "John";
-let evh = {
-    name: "John cena",
-    active: false,
-    albums: [1988, 1921, "1892"],
+const logMsg = (message) => {
+    console.log(message);
 };
-let jp = {
-    name: "jimmy",
-    active: true,
-    albums: ["I", "II", "IV"],
+logMsg("hello");
+// logMsg(add(1, 3));
+let subtract = function (c, d) {
+    return c - d;
 };
-const greetGuitarist = (guitarist) => {
-    if (guitarist.name) {
-        return `Hello ${guitarist.name.toUpperCase()}.`;
+// interface mathFunction {
+//   (a: number, b: number): number;
+// }
+let multiply = function (c, d) {
+    return c * d;
+};
+// logMsg(multiply(3, 2));
+// optional parameters
+const addAll = (a, b, c) => {
+    if (typeof c !== "undefined") {
+        return a + b + c;
     }
-    return "hello";
+    return a + b;
 };
-console.log(greetGuitarist(evh));
-// Enums
-var Grade;
-(function (Grade) {
-    Grade[Grade["U"] = 1] = "U";
-    Grade[Grade["D"] = 2] = "D";
-    Grade[Grade["C"] = 3] = "C";
-    Grade[Grade["B"] = 4] = "B";
-    Grade[Grade["A"] = 5] = "A";
-})(Grade || (Grade = {}));
-console.log(Grade.U);
+// default param value
+const sumALl = (a = 2, b, c = 2) => {
+    return a + b + c;
+};
+// logMsg(addAll(1, 2, 3));
+// logMsg(addAll(1, 2));
+// logMsg(sumALl(1, 2));
+// logMsg(sumALl(undefined, 2)); we have to send undefined if we use a default as first parameter otherwise it is used in last same for optional
+// Rest parameters
+const total = (a, ...nums) => {
+    return a + nums.reduce((prev, curr) => prev + curr);
+};
+// logMsg(total(1, 2, 3, 4));
+const createError = (errMsg) => {
+    throw new Error(errMsg);
+};
+const infinite = () => {
+    let i = 1;
+    while (true) {
+        i++;
+        if (i > 100)
+            break;
+    }
+};
+// custom type guard
+const isNumber = (value) => {
+    return typeof value === "number" ? true : false;
+};
+const isString = (value) => {
+    return typeof value === "string" ? true : false;
+};
+// use of the never type
+const numberOrString = (value) => {
+    if (isString(value))
+        return "string";
+    if (isNumber(value))
+        return "number";
+    return createError("This should never happen");
+};
+logMsg(numberOrString("67"));
