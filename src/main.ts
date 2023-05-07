@@ -15,4 +15,62 @@ let myTuple: [string, number, boolean] = ["Bipin", 22, true];
 
 let mixed = ["john", 1, false];
 
-myTuple = myTuple;
+myTuple[1] = 2;
+
+// Objects
+let myObj: object;
+myObj = [];
+// console.log(typeof myObj);
+myObj = bands;
+myObj = {};
+
+const exampleObj = {
+  prop1: "Bipin",
+  prop2: true,
+};
+
+exampleObj.prop1 = "John";
+
+// type Guitarist = {
+//   name: String;
+//   active?: boolean;
+//   albums: (string | number)[];
+// };
+
+interface Guitarist {
+  name?: String;
+  active: boolean;
+  albums: (string | number)[];
+}
+
+let evh: Guitarist = {
+  name: "John cena",
+  active: false,
+  albums: [1988, 1921, "1892"],
+};
+
+let jp: Guitarist = {
+  name: "jimmy",
+  active: true,
+  albums: ["I", "II", "IV"],
+};
+
+const greetGuitarist = (guitarist: Guitarist) => {
+  if (guitarist.name) {
+    return `Hello ${guitarist.name.toUpperCase()}.`;
+  }
+  return "hello";
+};
+
+console.log(greetGuitarist(evh));
+
+// Enums
+enum Grade {
+  U = 1,
+  D,
+  C,
+  B,
+  A,
+}
+
+console.log(Grade.U);
