@@ -1,19 +1,18 @@
-let myName: string = "Bipin";
-let meaningOfLife: number;
-let isLoading: boolean;
-let album: any;
+let stringArr = ["one", "two", "three"];
+let guitars = ["strat", "lest paul", 5150];
+let mixedData = ["EVH", 1984, true];
 
-myName = "Bipin";
-meaningOfLife = 0;
-isLoading = true;
-album = 1010;
-let hello = "hello";
+stringArr[0] = "john";
 
-const sum = (a: number, b: number) => {
-  return a + b;
-};
+guitars[0] = 142;
 
-let postId: string | number;
-let isActive: number | boolean;
+let test = [];
+let bands: string[] = [];
+bands.push("bipin");
 
-let re: RegExp = /\w+/g;
+// Tuple
+let myTuple: [string, number, boolean] = ["Bipin", 22, true];
+
+let mixed = ["john", 1, false];
+
+myTuple = myTuple;
