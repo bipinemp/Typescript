@@ -1,92 +1,16 @@
-// Index Signatures & keyof Assertions
+// Generics
+const echo = <T>(arg: T): T => arg;
 
-// Index Signatures
-
-// interface TransactionObj {
-//   readonly [index: string]: number;
-// }
-
-interface TransactionObj {
-  readonly [index: string]: number;
-  Pizza: number;
-  Books: number;
-  Job: number;
-}
-
-const todaysTransactions: TransactionObj = {
-  Pizza: -10,
-  Books: -5,
-  Job: 50,
+const isObj = <T>(arg: T): boolean => {
+  return typeof arg === "object" && !Array.isArray(arg) && arg !== null;
 };
 
-console.log(todaysTransactions.Pizza);
-console.log(todaysTransactions["Pizza"]);
+console.log(isObj(true));
+console.log(isObj("John"));
+console.log(isObj([1, 2, 3]));
+console.log(isObj({ name: "john" }));
+console.log(isObj(null));
 
-let prop: string = "Pizza";
-console.log(todaysTransactions[prop]);
-
-const todaysNet = (transactions: TransactionObj): number => {
-  let total = 0;
-  for (const transaction in transactions) {
-    total += transactions[transaction];
-  }
-  return total;
+const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
+  return { arg, is: !!arg };
 };
-
-console.log(todaysNet(todaysTransactions));
-
-// todaysTransactions.Pizza = 90; shows erro as we made it readonly
-
-// console.log(todaysTransactions["Dave"]); says undefined
-
-//////////////////////////////////////////////
-
-interface Student {
-  // [key: string]: string | number | number[] | undefined;
-  name: string;
-  GPA: number;
-  classes?: number[];
-}
-
-const student: Student = {
-  name: "Doug",
-  GPA: 3.5,
-  classes: [100, 200],
-};
-
-// console.log(student.test); says undefined
-
-for (const key in student) {
-  console.log(`${key}: ${student[key as keyof Student]}`);
-}
-
-Object.keys(student).map((key) => {
-  console.log(student[key as keyof typeof student]);
-});
-
-const logStudentKey = (student: Student, key: keyof Student): void => {
-  console.log(`Student ${key}: ${student[key]}`);
-};
-
-logStudentKey(student, "name");
-
-/////////////////////////////////////////
-
-// interface Incomes {
-//   [key: "string"]: number;
-
-// }
-
-type Streams = "salary" | "bonus" | "sidehustle";
-
-type Incomes = Record<Streams, number>;
-
-const monthlyIncomes: Incomes = {
-  salary: 500,
-  bonus: 100,
-  sidehustle: 250,
-};
-
-for (const revenue in monthlyIncomes) {
-  console.log(monthlyIncomes[revenue as keyof Incomes]);
-}
